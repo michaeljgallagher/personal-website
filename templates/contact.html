@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center">
+      <h2>Contact Me </h2>
+      <p>Use the form below to send me an email</p>
+</div>
+<div class="row">
+   <br>
+   <div class="row align-items-center justify-content-center">
+      <div class="col-md-4 col-md-offset-4">
+         <form  action="" method="post" role="form">
+            {{ form.hidden_tag() }}
+            {{ form.csrf }}
+            <fieldset class = "form-group">
+               <div class="form-group">
+                  {{ form.name.label(class="form-control-label") }}
+                  {% if form.name.errors %}
+                  {{ form.name(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                     {% for error in form.name.errors %}
+                     <span>{{ error }}</span>
+                     {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.name(class="form-control form-control-md", placeholder="Enter name") }}
+                  {% endif %}
+               </div>
+               <div class = "form-group">
+                  {{ form.email.label(class="form-control-label") }}
+                  {% if form.email.errors %}
+                  {{ form.email(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                     {% for error in form.email.errors %}
+                     <span>{{ error }}</span>
+                     {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.email(class="form-control form-control-md", placeholder="Enter email") }}
+                  {% endif %}
+               </div>
+               <div class = "form-group">
+                  {{ form.subject.label(class="form-control-label") }}
+                  {% if form.subject.errors %}
+                  {{ form.subject(class="form-control form-control-md is-invalid") }}
+                  <div class="invalid-feedback">
+                     {% for error in form.subject.errors %}
+                     <span>{{ error }}</span>
+                     {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.subject(class="form-control form-control-md", placeholder="Enter subject") }}
+                  {% endif %}
+               </div>
+               <div class = "form-group">
+                  {{ form.message.label(class="form-control-label") }}
+                  {% if form.message.errors %}
+                  {{ form.message(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                     {% for error in form.message.errors %}
+                     <span>{{ error }}</span>
+                     {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.message(rows = "4", class="form-control form-control-md", placeholder="Enter message") }}
+                  {% endif %}                
+               </div>
+            </fieldset>
+            <div class="form-group text-center">
+               {{form.send(class="btn btn-primary")}}
+            </div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+               <p>{{ message }}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+         </form>
+      </div>
+   </div>
+</div>
+{% endblock %}

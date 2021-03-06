@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4">
+        <figure>
+            <img src="/static/images/{{ project.image }}" class="thumbnail" alt="{{ project.name }}" />
+            <figcaption>{{ project.desc_short }}</figcaption>
+        </figure>
+    </div>
+    <div class="col-md-8">
+        <h4>Description</h4>
+        <p>{{ project.desc_long }}</p>
+        <br />
+        <h4>Technologies Used</h4>
+        <p>{{ project.tech }}</p>
+        <br />
+        {% if project.live %}
+        <p>Want to see a live version of this? A live version can be found <a href="{{ project.live }}" target="_blank">here</a>.</p>
+        {% endif %}
+        <p>See more about this project and its source code on <a href="{{ project.github }}" target="_blank">GitHub</a></p>
+        <br />
+    </div>
+</div>
+
+{% endblock %}

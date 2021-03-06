@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="text-center">
+         <h2>Recent Work</h2>
+         <p>Here are some of my most recent projects</p>
+      </div>
+         <div class="row">
+            {% for project in projects %}
+            <div class="col-sm-4">
+               <div class="card">
+                  <h3>{{ project.name }}</h3>
+                  <p>{{ project.desc_short }}</p>
+                  <a class="btn btn-primary btn-sm" role="button" href="{{ url_for('project', project_id=project.id) }}">See More</a>
+               </div>
+            </div>
+            {% endfor %}
+         </div>
+{% endblock %}
