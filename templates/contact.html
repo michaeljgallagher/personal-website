@@ -66,6 +66,9 @@
                </div>
             </fieldset>
             <div class="form-group text-center">
+               {{ form.recaptcha }}
+            </div>
+            <div class="form-group text-center">
                {{form.send(class="btn btn-primary")}}
             </div>
             {% with messages = get_flashed_messages() %}

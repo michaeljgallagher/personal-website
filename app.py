@@ -5,26 +5,28 @@ from flask_mail import Mail
 app = Flask(__name__)
 
 # DEVELOPMENT
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///project_library.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = ''
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project_library.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SECRET_KEY"] = ""
+app.config["RECAPTCHA_PUBLIC_KEY"] = ""
+app.config["RECAPTCHA_PRIVATE_KEY"] = ""
 
 # PRODUCTION
-# app.config.from_pyfile('config.py')
+# app.config.from_pyfile("config.py")
 
 db = SQLAlchemy(app)
 mail = Mail(app)
 
 
-@app.route("/", methods=['GET'])
-@app.route("/home/", methods=['GET'])
+@app.route("/", methods=["GET"])
+@app.route("/home/", methods=["GET"])
 def home():
-	return render_template('home.html', title='Michael Gallagher', nav='home')
+    return render_template("home.html", title="Michael Gallagher", nav="home")
 
 
 @app.errorhandler(404)
 def not_found(e):
-	return render_template('404.html', title="Not Found"), 404
+    return render_template("404.html", title="Not Found"), 404
 
 
 import routes
